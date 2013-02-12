@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Gehaltsrechner</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section1">Section 1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="birth_date_title">Geboren am</string>
+    <string-array name="birth_date_items">
+                <item>Vor 1941</item>
+                <item>1941</item>
+                <item>1942</item>
+                <item>1943</item>
+                <item>1944</item>
+                <item>1945</item>
+                <item>1946</item>
+                <item>1947</item>
+                <item>1948</item>               
+                <item>Nach 1948</item>
+    </string-array>               
+    <string name="lstklasse_title">LSt. Klasse</string>
+    <string-array name="lstklasse_items">
+                <item>1</item>
+                <item>2</item>
+                <item>3</item>
+                <item>4</item>
+                <item>5</item>
+                <item>6</item>                
+    </string-array>
+    <string name="kinderfrei_title">Kinderfreibeträge</string>
+    <string-array name="kinderfrei_items">
+                <item>0</item>
+                <item>0.5</item>
+                <item>1</item>
+                <item>1.5</item>
+                <item>2</item>
+                <item>2.5</item>
+                <item>3</item>
+                <item>3.5</item>
+                <item>4</item>
+                <item>4.5</item>
+                <item>5</item>
+                <item>5.5</item>
+                <item>6</item>
+                <item>6.5</item>
+                <item>7</item>
+                <item>7.5</item>                
+    </string-array>
+    <string name="kirchensteuer_title">Kirchensteuer</string>
+    <string name="procent_sufix"> %</string>
+    <string-array name="kirchensteuer_items">
+                <item>0</item>
+                <item>8</item>
+                <item>9</item>                
+    </string-array>
+    <string name="zeitraum_title">Zeitraum</string>
+    <string-array name="zeitraum_items">
+                <item>Jahr</item>
+                <item>Monat</item>
+                <item>Woche</item>
+                <item>Tag</item>                
+    </string-array>
+   	<string name="bundesland_title">Bundesland</string>
+    <string-array name="bundesland_items">
+		<item>Baden-Württemberg</item>
+		<item>Bayern</item>
+		<item>Berlin (West)</item>
+		<item>Berlin (Ost)</item>
+		<item>Brandenburg</item>
+		<item>Bremen/Bremerhaven</item>
+		<item>Hamburg</item>
+		<item>Hessen</item>
+		<item>Mecklenburg-Vorpommern</item>
+		<item>Niedersachsen</item>
+		<item>Nordrhein-Westfalen</item>
+		<item>Rheinland-Pfalz</item>
+		<item>Saarland</item>
+		<item>Sachsen</item>
+		<item>Sachsen-Anhalt</item>
+		<item>Schleswig-Holstein</item>
+		<item>Thüringen</item>               
+    </string-array>
+		<string name="rvpflichtig_title">RV Pflichtig</string>
+		<string name="glob_yes">Ja</string>
+		<string name="glob_no">Nein</string>
+		<string name="kv_beitrag_title">KV Beitragssatz</string>
+		<string name="kv_bei_default_value">15.5</string>
+		<string name="unter_23_title">Unter 23 J.a.</string>
+		<string name="brutto_title">Bruttolohn (€)</string>
+		<string name="button_berechnen_title">Berechnen</string>
+</resources>

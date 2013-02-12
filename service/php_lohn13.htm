@@ -1,0 +1,344 @@
+<HTML>
+<HEAD><TITLE>Lohnsteuer 2013 berechnen in PHP, Gehaltsrechner</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<STYLE type=text/css>
+<!--
+.normal {
+        FONT-SIZE: 11px; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial, Helvetica, sans-serif;
+}
+TD {
+        FONT-SIZE: 11px; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: arial, Helvetica, sans-serif;
+}
+a:hover  {text-decoration:non;
+          font-weight: bold;
+         }
+a  {color: #0000FF;}
+
+Body    {background-image: url(schatten.jpg);background-repeat:repeat-y;}
+//-->
+</STYLE>
+<script language="JavaScript">
+<!--
+/*
+if(!parent.center)
+    location.href="steuer.htm?php_lohn13.htm";
+*/
+
+function hinweis() {
+  init('info','10px','10px')
+}
+
+function loeschen() {
+ document.forms[0].reset();
+}
+
+//-->
+</script>
+
+<div onmousedown=mD(this,event) id=info style="display: none; position: absolute;cursor: move;"><table width=500 cellspacing=0 cellpadding=0 bordercolor=#000099 border=1>
+<TR bgColor=#000099><TD><font size=2 color=#FFFFFF>&nbsp;<b>Anwendungshinweise</b></font></TD><TD align=right><a href="#" onClick="document.getElementById('info').style.display = 'none';" style="text-decoration: none; color: #FFFFFF">schliessen <img src="schliessen.gif" border=0></a>&nbsp;</TD></TR>
+<TR><TD colspan=2>
+<TABLE border=0 bgColor=F1F1FF cellspacing=0 cellpadding=10><TR><TD>Das Lohnsteuerberechnungs-Programm f&uuml;r 2013 in <b>PHP</b> (<a href='http://www.parmentier.de/steuer/lohn12.php.txt' target=_new>lohn13.php</a> - als Textdatei herunterladbar), ist durch Anpassung des JavaScript-Programms (<a href='http://www.parmentier.de/steuer/lohnst_pap2013.js'>lohnst_pap2013.js</a>) erstellt worden und ist FreeWare. Es folgt genau der Berechnung des PAP (<a href='http://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2012-11-19-PAP-2013.pdf?__blob=publicationFile&v=2' target='_new'>Programmablaufplan zur Berechnung der Lohnsteuer 2013</a>), mit gleichen Funktions- und Parameterbezeichnungen. <p style="margin-top:5pt;">Um es zu nutzen, mu&szlig; es auf einen PHP-f&auml;higen Server hochgeladen werden und aus einer HTML-Datei mit dem Ausdruck &lt;FORM action=lohn13.php method="post"&gt; (was <b>vor </b>den Eingabefeldern stehen muss) und zum Schluss &ltINPUT type="submit" value="Lohnsteuer berechnen"&gt &lt FORM&gt aktiviert werden, wodurch auch die Eingabeparameter erfasst und an das PHP-Programm mit der HTTP-POST-Methode als assoziatives Array &uuml;bergeben werden. Mit dem Ausdruck $_POST werden die Eingabeparameter vom PHP-Programm dann wieder ausgelesen und verarbeitet.
+<!--p style="margin-top:5pt;"><b>Um das Ergebnis neben der Eingabenmaske angezeigt zu bekommen, sind jetzt zwei Frames in die Datei php_lohn13.htm integriert (in die die Dateien ausgabeframe.htm und phpaufruf_frame.htm geladen werden). Die eigentliche Berechnungs-Datei lohn13.php blieb unverändert (nur Textgröße wurde angepasst)</b-->
+<p style="margin-top:5pt;">Um bei Monatsbez&uuml;gen auch Einmalzahlungen und Verg&uuml;tungen mehrj&auml;hriger T&auml;tigkeit ber&uuml;cksichtigen zu k&ouml;nnen, wurde das PAP-Programm um die Jahreshochrechnungsfunktion jahranteil() erg&auml;nzt. Ebenso war eine Erg&auml;nzung des PAP notwendig, um beim Frei- und Hinzurechnungsbetrag immer die Jahreswerte der Lohnsteuerkarte eingeben zu k&ouml;nnen.
+<p style="margin-top:5pt;">Da ab 2010 der Kranken- und Pflegeversicherungsbeitrag f&uuml;r die Grundversorgung vom steuerpflichtigen Einkommen abgezogen werden kann, ber&uuml;cksicht das Programm bei privat Kranken- und Pflegeversicherten (z.B. Beamte) deren Beitr&auml;ge, wenn sie  folgenderma&szlig;en (entsprechend als Monats- bzw. Jahresbeitrag) eingegeben werden: <li><b>mit Arbeitgeberzuschuss</b>:<br> dazu bei Arbeitgeberzuschuss "ja" aktivieren und in den beiden vorgesehenen Feldern zum einen die Gesamtsumme der Beitr&auml;ge zur privaten Kranken- und Pflegeversicherung angeben (zur Berechnung des -wirklichen- Arbeitgeberzuschusses) und zum anderen im zweiten Feld die Summe der darin enthaltenen Beitr&auml;ge, die eine Basisversorgung sichern (wird zur Berechnung der Vorsorgepauschale ben&ouml;tigt, dort wird ein reduzierter Arbeitgeberzuschuss abgezogen). <li><b>ohne Arbeitgeberzuschuss:</b><br>Betr&auml;ge in Felder eintragen bei Arbeitgeberzuschuss "nein" aktivieren.<li><b>Privatversicherung <u>ohne</u> Nachweis:</b> <br>Krankenversicherungsbeitragssatz auf Null stellen. Es werden nur 12% des Bruttolohns bzw. max. 1.900/3.000 &euro; f&uuml;r den Krankenkassenbeitrag ber der Vorsorgepauschale ber&uuml;cksichtigt.
+<p style="margin-top:5pt;">Die Ber&uuml;cksichtigung von Versorgungsbez&uuml;gen kann man gegebenfalls weglassen.
+Bei ausschlie&szlig;lichem Versorgungsbezug wird automatisch Tabelle B gew&auml;hlt und der volle Kranken- und Pflegeversicherungsbeitrag f&uuml;r die Versorgungsbez&uuml;ge angegeben incl. der f&uuml;r eine etvl. Kapitalauszahlung. Sterbegeld ist dagegen Kranken- und Pflegeversicherungsfrei (entsprechend ausw&auml;hlen).
+<p style="margin-top:5pt;">Vom Wohnort h&auml;ngt der Kirchensteuersatz ab. In Baden-W&uuml;rttemberg und Bayern betr&auml;gt er 8% in allen &uuml;brigen Bundesl&auml;ndern 9%.
+<p style="margin-top:5pt;">Vom Arbeitgeber zu tragen sind die Umlagen U1 (Versicherung f&uuml;r Lohnfortzahlung im Krankheitsfall) und U2 (Mutterschaft) unabh&auml;ngig, ob der Arbeitnehmer gesetzlich oder privat Krankenversichert ist. Die Umlagen werden aber nur vom laufenden Lohn (ohne Einmalzahlungen) berechnet. Laufender Lohn und Einmalzahlungen sind dagegen die Berechnungsgrundlage f&uuml;r die Insolvenzumlage U3 (2013 = 0.15%)  <p> Die Ausgabe der Werte ist auf das Wesentliche beschr&auml;nkt. Die zur Testung hilfreichen Internen Werte (Erkl&auml;rung dazu siehe PAP) k&ouml;nnen in der Statuszeile angezeigt werden.<p align=right > <a href="#" onClick="document.getElementById('info').style.display = 'none';" style="text-decoration: none;">schliessen <img src="schliessen.gif" border=0></a></TD></TR></TABLE>
+</TD></TR></TABLE>
+</div>
+
+<script language="JavaScript">
+<!--
+
+function Calc() {
+
+ if(document.eingabe.vbezm.value < document.eingabe.vbez.value  && document.eingabe.vjahr.value==2013)
+  if(document.eingabe.lzz.value==2)
+  document.eingabe.vbezm.value = document.eingabe.vbez.value;
+
+ if(document.eingabe.sterbe.value > document.eingabe.sonstb.value)
+   document.eingabe.sonstb.value = document.eingabe.sterbe.value;
+
+   if(document.eingabe.vbez.value/1 > document.eingabe.re4.value/1) {
+    alert("Nicht hudeln! Versorgungsbezüge dürfen nicht \ngrösser sein als Bruttolohn")
+    document.eingabe.vbez.value="";
+    document.eingabe.vbez.focus()
+    }
+   if(document.eingabe.vbez.value/1 == document.eingabe.re4.value/1){
+    if(document.eingabe.vbez.value/1 > 0) {
+    document.eingabe.e_krv[0].checked=true
+    alert("Versorgungsbezüge sind nicht rentenversicherungspflichtig!")
+    }
+   }
+
+ if(document.eingabe.jhinzu.value>0 && document.eingabe.stkl.value==6){
+    document.eingabe.jhinzu.value="";
+    alert("Bei Steuerklasse 6 wird kein Hinzurechnungsbetrag\nberücksichtigt!")
+  }
+ if(document.eingabe.stkl.value==2 && document.eingabe.zkf.selectedIndex==0) {
+       alert("Bei Steuerklasse II muss ein Kinderfreibetrag angegeben werden!")
+       document.eingabe.zkf.selectedIndex=2;
+       document.eingabe.kinderlos[1].checked = true
+       document.eingabe.zkf.focus()
+  }
+
+  if(document.eingabe.sterbe.value>0 && document.eingabe.vbezs.value>0 || document.eingabe.vkapa.value>0 && document.eingabe.vbezs.value>0) {
+        alert("Eine Sonderzahlung im Erstbezugsjahr und eine Sterbegeld-/Kapitalauszahlung\nschliessen sich aus. Bitte ändern! ")
+       document.eingabe.vbezs.value=""
+      }
+
+  if(document.eingabe.stkl.selectedIndex==3)
+    document.getElementById("faczeig").style.display = "block";
+  else
+    document.getElementById("faczeig").style.display = "none";
+
+  if(document.eingabe.zkf.selectedIndex > 0)
+    document.eingabe.kinderlos[1].checked = true
+
+}
+
+function flimit() {
+
+ef = document.eingabe.f.value
+if((ef+"").length > 5) {
+             alert("Faktor bitte nur mit 3 Nachkommastellen eingeben")
+             document.eingabe.f.value = (ef+"").substr(0,5)
+            }
+}
+//-->
+</script>
+</HEAD>
+<BODY onLoad='versorgfensterclear();Calc()' style="margin: 0pt;">
+<script type="text/javascript" src="dragndrop.js"></script>
+
+<!-- IFRAME MARGINWIDTH=0 LEFTMARGIN=0 TOPMARGIN=0 MARGINHEIGHT=0 id=frame1 SRC='zettel.htm' WIDTH=315 HEIGHT=280  frameborder=0 scrolling=no framespacing=0 style="display: block; position: absolute;top: 75px;left: 20px;"></IFRAME -->
+
+
+<center>
+<TABLE border=0 cellspacing=20 cellpadding=0>
+<TR><TD vAlign=top><small>Version 11.2.2013</small><br>
+<TABLE cellpadding=0 cellspacing=0 border=0><TR><TD bgColor=#FFFFFF vAlign=top>
+<FORM name=eingabe action="php_lohn13/lohn13.php" method="post">
+<TABLE cellSpacing=0 cellPadding=0 border=0 vAlign=top>
+  <TBODY>
+  <TR bgColor=#909090 height=24><TD align=center vAlign=middle colspan=2> <font color=#FFFFFF><b>Lohnsteuerberechnung 2013</b></font></TD></TR>
+  <TR><TD>&nbsp;</TD></TR>
+  <TR>
+    <TD class=normal>Geburtsdatum</TD>
+    <TD><SELECT class=normal name=ajahr onClick="Calc();"><OPTION value=2005>vor 1941</OPTION> <OPTION value=2006>1941</OPTION><OPTION value=2007>1942<OPTION value=2008>1943
+        <OPTION value=2009>1944<OPTION value=2010>1945<OPTION value=2011>1946<OPTION value=2012>1947<OPTION value=2013>1948<OPTION selected value=0>nach 1948</OPTION></SELECT></TD></TR>
+   <TR>
+    <TD class=normal>Steuerklasse</TD>
+    <TD><TABLE cellspacing=0 cellpadding=0><TR><TD><SELECT class=normal name=stkl onClick="Calc();"> <OPTION selected value=1>I</OPTION>
+    <OPTION value=2>II</OPTION> <OPTION value=3>III</OPTION>
+    <OPTION value=4>IV</OPTION> <OPTION value=5>V</OPTION>
+    <OPTION value=6>VI</OPTION></SELECT></TD><TD><div id=faczeig style="display:none;">&nbsp; Ehegattenfaktor: <input name=f style="width=40" class=normal onKeyUp="flimit();"></input></div></TD></TR></TABLE></TD></TR>
+ <TR>
+    <TD class=normal>Zahl der Kinderfreibetr&auml;ge</TD>
+    <TD><SELECT class=normal name=zkf onClick="Calc();">
+        <OPTION selected value=0>- -</OPTION> <OPTION>0.5</OPTION>
+        <OPTION>1</OPTION> <OPTION>1.5</OPTION> <OPTION>2</OPTION> <OPTION>2.5</OPTION> <OPTION>3</OPTION> <OPTION>3.5</OPTION> <OPTION>4</OPTION> <OPTION>4.5</OPTION> <OPTION>5</OPTION> <OPTION>5.5</OPTION> <OPTION>6</OPTION> <OPTION>6.5</OPTION> <OPTION>7</OPTION> <OPTION>7.5</OPTION></SELECT> </TD></TR>
+
+  <TR>
+    <TD class=normal>Arbeitsstelle im Bundesland</TD>
+    <TD><SELECT class=normal name=bundesland>
+    <OPTION value=1>Baden-W&uuml;rttemberg</OPTION>
+        <OPTION value=2>Bayern</OPTION>
+        <OPTION value=3>Berlin (West)</OPTION>
+        <OPTION value=30>Berlin (Ost)</OPTION>
+        <OPTION value=4>Brandenburg</OPTION>
+        <OPTION value=5>Bremen/Bremerhaven</OPTION>
+        <OPTION value=6>Hamburg</OPTION>
+        <OPTION value=7 selected>Hessen</OPTION>
+        <OPTION value=8>Mecklenburg-Vorpommern</OPTION>
+        <OPTION value=9>Niedersachsen</OPTION>
+        <OPTION value=10>Nordrhein-Westfalen</OPTION>
+        <OPTION value=11>Rheinland-Pfalz</OPTION>
+        <OPTION value=12>Saarland</OPTION>
+        <OPTION value=13>Sachsen</OPTION>
+        <OPTION value=14>Sachsen-Anhalt</OPTION>
+        <OPTION value=15>Schleswig-Holstein</OPTION>
+        <OPTION value=16>Th&uuml;ringen</OPTION></SELECT> </TD></TR>
+  <TR>
+  <TD class=normal>Kirchensteuer</TD>
+    <TD class=normal><SELECT class=normal
+       name=r><OPTION value=0>0<OPTION value=8>8<OPTION value=9 selected>9</OPTION></SELECT> %</TD>
+    </TR>
+  <TR>
+    <TD class=normal>rentenversicherungspflichtig</TD>
+    <TD class=normal><INPUT class=normal
+       type=radio name=e_krv value=2>nein
+      <INPUT class=normal type=radio CHECKED
+      name=e_krv value=0>ja </TD></TR>
+  <TR>
+    <TD class=normal>Elternteil o. unter 23 Jahre</TD>
+    <TD class=normal><INPUT class=normal
+       type=radio name=kinderlos value=1 CHECKED>nein
+      <INPUT class=normal type=radio
+      name=kinderlos value=0>ja </TD></TR>
+  <TR>
+    <TD class=normal>Krankenversicherungsbeitragssatz &nbsp; </TD>
+    <TD><INPUT class=normal style="width=30;" name=kvsatz value=15.5 onKeyUp='pkvstorno()'> % &nbsp; (incl. 0,9% AN-Sonderbeitrag)</TD></TR>
+    <TR><TD colspan=3 height=16 vAlign=bottom><font color=#0000FF>oder private Krankenversicherung</font> &nbsp; </TD></TD></TR>
+     <TR bgColor=#E5E5F5><TD class=normal> &nbsp; Pr&auml;mie (incl. PflegeV) </TD><TD><input class=normal name=e_kvp onKeyUp="pruefen();"> Euro </TD></TR>
+  <TR bgColor=#E5E5F5>
+    <TD class=normal> &nbsp; Arbeitgeberzuschuss</TD>
+    <TD class=normal><INPUT class=normal
+       type=radio name=e_pkv value=1 CHECKED>nein
+      <INPUT class=normal type=radio
+      name=e_pkv value=2>ja </TD></TR>
+     <TR bgColor=#E5E5F5><TD class=normal> &nbsp; <u>monatlicher</u> Basistarif der PKV </TD><TD><input class=normal  name=e_pkpv onKeyUp="pruefen();"> Euro </TD></TR>
+  <TR>
+    <TD class=normal height=26>Lohnzahlungszeitraum</TD>
+    <TD class=normal><SELECT name=lzz class=normal><OPTION value=1>Jahr<OPTION selected value=2>Monat<OPTION value=3>Woche<OPTION value=4>Tag</OPTION></SELECT></TD></TR>
+  <TR>
+    <TD class=normal><b>Bruttolohn</b></TD>
+    <TD><INPUT class=normal name=re4 onKeyUp="Calc();">&nbsp; Euro</TD></TR>
+    <TR>
+    <TD class=normal>Einmal/sonstige Bez&uuml;ge</TD>
+    <TD><INPUT class=normal name=sonstb>&nbsp; Euro</TD></TR>
+    <TR>
+    <TR>
+    <TD class=normal>davon als Entsch&auml;digungszahlung</TD>
+    <TD><INPUT class=normal name=sonstent>&nbsp; Euro</TD></TR>
+    <TR>
+    <TD class=normal>schon abger. Einmalbez&uuml;ge/Jahr &nbsp;</TD>
+    <TD><INPUT class=normal name=jsonstb>&nbsp; Euro</TD></TR>
+    <TR>
+    <TD class=normal>davon als Entsch&auml;digungszahlung</TD>
+    <TD><INPUT class=normal name=jre4ent>&nbsp; Euro</TD></TR>
+    <TR>
+    <TD class=normal NoWrap>Bez&uuml;ge aus mehrj&auml;hriger T&auml;tigkeit &nbsp;</TD>
+    <TD><INPUT class=normal name=vmt>&nbsp; Euro</TD></TR>
+    <TR>
+    <TD class=normal NoWrap>davon als Entsch&auml;digungszahlung &nbsp;</TD>
+    <TD><INPUT class=normal name=entsch_1>&nbsp; Euro</TD></TR>
+  <TR>
+    <TD class=normal NoWrap>(Jahres)Freibetrag aus LStKarte &nbsp;</TD>
+    <TD><INPUT class=normal name=jfreib>&nbsp; Euro</TD></TR>
+  <TR>
+    <TD class=normal NoWrap>(Jahres)Hinzurechnungsbetrag </TD>
+    <TD><INPUT class=normal name=jhinzu onKeyUp="Calc()">&nbsp; Euro</TD></TR>
+  <TR>
+     <TD colspan=2 align=right><div id=vb_a style="display:none;"><TABLE cellpadding=0 cellspacing=0><TR><TD><font color=#007000>Bruttolohn enth&auml;lt Versorgungsbez&uuml;ge</font> &nbsp; <input type=checkbox  onClick='versorgfenster();' name=vbwahl> &nbsp; &nbsp; &nbsp; &nbsp; </div></TD></TR></TABLE>
+     </TD></TR>
+
+       <!--  Eingabemaske Versorgungsbezüge  --->
+
+
+<TR><TD colspan=2>
+<div id=vb style="display:none;">
+<hr size=0>
+<TABLE><TR><TD colspan=2 bgColor=#F1F1FC> &nbsp; <b>Versorgungsbez&uuml;ge</b></TD></TR>
+<TR><TD align=right class=normal> im aktuellen Bruttolohn enthaltene &nbsp;<br>Versorgungsbez&uuml;ge &nbsp; </TD><TD><INPUT class=normal  name=vbez onKeyUp='Calc();'>&nbsp; Euro</TD></TR> <TR><TD align=right class=normal>&nbsp; Anzahl Bezugsmonate &nbsp; </TD><TD><select name=zmvb class=normal><option>1<option>2<option>3<option>4<option>5<option>6<option>7<option>8<option>9<option>10<option>11<option selected>12</option></select> <small>nur bei Jahresbezug</small></TD></TR>     <TR><TD align=right class=normal> &nbsp; voraus. Sonderzahlung (im ErstbezJahr) &nbsp;</TD><TD> <input class=normal  name=vbezs onKeyUp='Calc();'>&nbsp; Euro</TD></TR>     <TR><TD align=right class=normal> &nbsp; <input type=radio name=kapindex onClick="Calc();" checked value=0>Sterbegeld &nbsp;<input type=radio name=kapindex onClick="Calc();" value=1> Kapitalauszahlung &nbsp;<br>in sonstigen Bez&uuml;gen enthalten &nbsp;</TD><TD> <input name=sterbe class=normal onKeyUp='Calc();'>&nbsp; Euro</TD></TR>     <TR><TD align=right class=normal> &nbsp; Kapitalauszahlungen/Abfindungen f&uuml;r &nbsp;<br> mehrere Jahre, in Verg&uuml;tung &nbsp;<br>f&uuml;r mehrj&auml;hrige T&auml;tigkeit <u>nicht</u> enthalten &nbsp; </TD><TD> <input name=vkapa class=normal onKeyUp='Calc();'>&nbsp; Euro</TD></TR>
+<TD class=normal NoWrap align=right>davon als Entsch&auml;digungszahlung &nbsp; </TD>
+    <TD><INPUT class=normal name=entsch_2>&nbsp; Euro</TD></TR>     <TR bgColor=#EEEEEE><TD align=right> <b>Erstbezugsjahr:</b>  </TD><TD><select name=vjahr class=normal><option value=2005>vor 2006<option value=2006>2006<option value=2007>2007<option value=2008>2008<option value=2009>2009<option value=2010>2010<option value=2011>2011<option value=2012>2012<option value=2013 selected>2013</option></select></TD></TR>     <TR  bgColor=#DEDEDE><TD align=right class=normal><u>monatlicher</u> Bezug aus Erstbezugsjahr </TD><TD><input class=normal name=vbezm>&nbsp; Euro</TD></TR></TABLE>
+</div></TD></TR>
+
+          <!-- Eingabemaske Arbeitgeberanteiel ------>
+
+<TR><TD colspan=2 align=right><TABLE cellpadding=0 cellspacing=0><TR><TD><div id=ag_a><font color=#007000>Arbeitgeberbelastung anzeigen</font> &nbsp; <input type=checkbox  onClick='agfenster();' name=agwahl> &nbsp; &nbsp; &nbsp; &nbsp; </div></TD></TR></TABLE>
+</TD></TR>
+<TR><TD colspan=2 align=center><div id=ag style="display:none;"><hr size=0><TABLE width=100%><TR bgColor=#F1F1FA><TD> &nbsp; <b>Arbeitgeberangaben</b></TD></TR><TR><TD align=center> <b>U1</b>: <input name=e_u1 class=normal size=1 value=1,1> % &nbsp; <b>U2</b>: <input name=e_u2 class=normal size=1 value=0,1> % <b> &nbsp; BG-Beitrag</b>: <input name=e_bg class=normal size=1 value=0,8> %<input type=hidden name=aganzeige></input>
+</TD></TR></TABLE>
+</div>
+</TD></TR>
+<TR><TD colspan=2>&nbsp;</TD></TR>
+<TR><TD colspan=2 height=30>
+
+<script language="JavaScript">
+<!--
+ <!--if(navigator.userAgent.indexOf("Chrome")>0)-->
+document.write("<TABLE cellspacing=0 cellpadding=0 width=390 height=24><TR bgcolor='#909090'><TD align=center><input type=button value=' &nbsp; ? &nbsp; ' onClick='hinweis();' style='font-size:9pt;font-weight:bold;'> &nbsp; &nbsp;  <INPUT type='submit' value='Nettolohn berechnen' style='font-size:9pt;font-weight:bold;' onClick='vb_pruefen();'> &nbsp; &nbsp;  <input type=button value=' C ' onClick='versorgfensterclear();reset();pruefen()' style='font-size:9pt;font-weight:bold;'></TD></TR></TABLE>");
+
+//-->
+</script>
+</TD></TR></TABLE>
+</FORM>
+</div>
+</TD></TR></TABLE>
+<!--script language="JavaScript">
+<!--
+ if(navigator.userAgent.indexOf("MSIE")>0)
+   document.write("<TD vAlign=top><p style='margin-top:-44pt;'>")
+ else
+   document.write("<TD vAlign=top><p style='margin-top:-36pt;'>")
+//-->
+<!--/script>
+
+<iframe name=rechner src='ausgabeframe.htm' width=390 height=790 frameborder=0></iframe-->
+
+<!--/TD></TR></TABLE-->
+</TD></TR></TABLE>
+
+<script language="JavaScript">
+<!--
+
+function versorgfenster() {
+if(document.eingabe.lzz.value>2) {
+ alert("Versorgunsbezüge werden nur bei Monats- bzw. Jahreslohn berücksichtigt")
+ document.eingabe.vbwahl.checked = false;
+ }
+else {
+ if(document.eingabe.vbwahl.checked){
+ document.getElementById('vb_a').style.display = 'none';
+ document.getElementById('vb').style.display ='block';
+   }
+ else
+  versorgfensterclear()
+ }
+}
+
+function versorgfensterclear() {
+ agfensterclear()
+ document.getElementById('vb').style.display = 'none'
+ document.getElementById('vb_a').style.display ='block';
+ document.eingabe.vbwahl.checked=false;
+}
+
+  function agfenster() {
+  if(document.eingabe.agwahl.checked){
+  document.getElementById('ag_a').style.display = 'none';
+  document.getElementById('ag').style.display = 'block';
+  document.eingabe.aganzeige.value=1;
+   }
+  else
+   agfensterclear()
+  }
+
+function agfensterclear() {
+  document.getElementById('ag_a').style.display = 'block';
+  document.getElementById('ag').style.display = 'none';
+  document.eingabe.aganzeige.value=0;
+  document.eingabe.agwahl.checked=false;
+  }
+
+  function pruefen() {
+
+  if(document.eingabe.e_pkpv.value>0 || document.eingabe.e_kvp.value>0 )
+     document.eingabe.kvsatz.value=0;
+  }
+
+  function pkvstorno() {
+    document.eingabe.e_pkpv.value=0;
+    document.eingabe.e_kvp.value=0;
+  }
+
+  function vb_pruefen() {
+
+  if(document.eingabe.vbez.value/1 > 0 && document.eingabe.vbez.value/1 < document.eingabe.re4.value/1 && document.eingabe.e_krv[1].checked==true){
+    alert("Der Programmablaufplan zur Lohnsteuerberechnung des BMF berücksichtigt keinen \nrentenversicherungspflichtigen Lohn neben Versorgungsbezügen. \nBitte dafür anderes Programm wählen!")
+    document.eingabe.e_krv[0].checked=true
+   }
+  }
+
+//-->
+</script>
+
+<!--else
+document.write("<iframe name='hfenster' src='phpaufruf_frame.htm' width=410 height=40 frameborder=0 scrolling=no></iframe>"); -->
+
+    </BODY>
+    </HTML>

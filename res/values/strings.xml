@@ -19,9 +19,29 @@
                 <item>1947</item>
                 <item>1948</item>               
                 <item>Nach 1948</item>
+    </string-array>
+    <string-array name="birth_date_values">
+                <item>2005</item>
+                <item>2006</item>
+                <item>2007</item>
+                <item>2008</item>
+                <item>2009</item>
+                <item>2010</item>
+                <item>2011</item>
+                <item>2012</item>
+                <item>2013</item>               
+                <item>0</item>
     </string-array>               
     <string name="lstklasse_title">LSt. Klasse</string>
     <string-array name="lstklasse_items">
+                <item>1</item>
+                <item>2</item>
+                <item>3</item>
+                <item>4</item>
+                <item>5</item>
+                <item>6</item>                
+    </string-array>
+    <string-array name="lstklasse_values">
                 <item>1</item>
                 <item>2</item>
                 <item>3</item>
@@ -48,9 +68,32 @@
                 <item>7</item>
                 <item>7.5</item>                
     </string-array>
+    <string-array name="kinderfrei_values">
+                <item>0</item>
+                <item>0.5</item>
+                <item>1</item>
+                <item>1.5</item>
+                <item>2</item>
+                <item>2.5</item>
+                <item>3</item>
+                <item>3.5</item>
+                <item>4</item>
+                <item>4.5</item>
+                <item>5</item>
+                <item>5.5</item>
+                <item>6</item>
+                <item>6.5</item>
+                <item>7</item>
+                <item>7.5</item>                
+    </string-array>
     <string name="kirchensteuer_title">Kirchensteuer</string>
     <string name="procent_sufix"> %</string>
     <string-array name="kirchensteuer_items">
+                <item>0</item>
+                <item>8</item>
+                <item>9</item>                
+    </string-array>
+    <string-array name="kirchensteuer_values">
                 <item>0</item>
                 <item>8</item>
                 <item>9</item>                
@@ -61,6 +104,12 @@
                 <item>Monat</item>
                 <item>Woche</item>
                 <item>Tag</item>                
+    </string-array>
+    <string-array name="zeitraum_values">
+                <item>1</item>
+                <item>2</item>
+                <item>3</item>
+                <item>4</item>                
     </string-array>
    	<string name="bundesland_title">Bundesland</string>
     <string-array name="bundesland_items">
@@ -82,6 +131,26 @@
 		<item>Schleswig-Holstein</item>
 		<item>Thüringen</item>               
     </string-array>
+    <string-array name="bundesland_values">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>30</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+		<item>11</item>
+		<item>12</item>
+		<item>13</item>
+		<item>14</item>
+		<item>15</item>
+		<item>16</item>               
+    </string-array>
+    	<string name="button_berechnen_title">Berechnen</string>
 		<string name="rvpflichtig_title">RV Pflichtig</string>
 		<string name="glob_yes">Ja</string>
 		<string name="glob_no">Nein</string>
@@ -89,5 +158,23 @@
 		<string name="kv_bei_default_value">15.5</string>
 		<string name="unter_23_title">Unter 23 J.a.</string>
 		<string name="brutto_title">Bruttolohn (€)</string>
-		<string name="button_berechnen_title">Berechnen</string>
+		<string name="result_brutto_title">Bruttolohn: €</string>
+		<string name="result_lst_title">Steuer: €</string>
+		<string name="result_soliz_title">Solidaritätzuschlag: €</string>
+		<string name="result_kirchenst_title">Kirschensteuer: €</string>
+		<string name="result_kv_title">Krankenversicherung: €</string>
+		<string name="result_pv_title">Pflegeversicherung: €</string>
+		<string name="result_av_title">Arbeitslosenversicherung: €</string>
+		<string name="result_rv_title">Rentenversicherung: €</string>
+		<string name="result_sum_steuer_title">Summe der Steuern: €</string>
+		<string name="result_sum_sv_title">Summe Sozialversicherung: €</string>
+		<string name="result_netto_title">Netto: €</string>
+		<string name="glob_euro_symbol"> €</string>
+		<string name="glob_empty_container">[]</string>
+		<string name="result_screen">Ergebnis Lohnsteuerberechnung 2013</string>
+		<string name="result_screen_title">Gehaltsrechner > Ergebnis</string>
+		<string name="url_lohn_service">http://sugar/lohn/lohn.xml.php</string>
+		<string name="err_parsing_xml">Error parsing XML response from server</string>
+		<string name="err_connecting_server">Error connecting to the server</string>
+		<string name="result_back_button_title">Zurück</string>
 </resources>

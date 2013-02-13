@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:theme="@style/AppBaseTheme" android:launchMode="standard" android:name="ResultActivity" android:label="@string/result_screen"></activity>
     </application>
 
 </manifest>

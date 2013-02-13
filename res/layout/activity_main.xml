@@ -23,7 +23,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/birthDateSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/birth_date_items"
@@ -43,7 +43,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/lstKlasseSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/lstklasse_items"
@@ -63,7 +63,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/kinderfreiSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/kinderfrei_items"
@@ -83,7 +83,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/Spinner01"
+                android:id="@+id/kirchensteuerSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/kirchensteuer_items"
@@ -103,7 +103,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/Spinner02"
+                android:id="@+id/bundeslandSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/bundesland_items"
@@ -123,7 +123,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/kvBeiEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -150,21 +150,31 @@
                     android:text="@string/rvpflichtig_title"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <RadioButton
-                    android:id="@+id/radioButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/glob_no" />
+                <RadioGroup
+			        android:id="@+id/rvPflichtigRadioGroup"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" >
+                
+	                <RadioButton
+	                    android:id="@+id/rvPflichtigRadioButtonNo"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:tag="2"
+	                    android:text="@string/glob_no" />
+	
+	                <Space
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="match_parent" />
+	
+	                <RadioButton
+	                    android:id="@+id/rvPflichtigRadioButtonYes"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:checked="true"
+	                    android:tag="0"
+	                    android:text="@string/glob_yes" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/glob_yes" />
+				</RadioGroup>            
             </LinearLayout>
         </TableRow>
 
@@ -183,22 +193,31 @@
                     android:layout_height="wrap_content"
                     android:text="@string/unter_23_title"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+				<RadioGroup
+			        android:id="@+id/under23RadioGroup"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" >
+                
+	                <RadioButton
+	                    android:id="@+id/under23RadioButtonNo"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:checked="true"
+	                    android:tag="1"
+	                    android:text="@string/glob_no" />
+	
+	                <Space
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="match_parent" />
+	
+	                <RadioButton
+	                    android:id="@+id/under23RadioButtonYes"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:tag="0"
+	                    android:text="@string/glob_yes" />
 
-                <RadioButton
-                    android:id="@+id/RadioButton02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/glob_no" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-                <RadioButton
-                    android:id="@+id/RadioButton01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/glob_yes" />
+				</RadioGroup>            
             </LinearLayout>
         </TableRow>
 
@@ -215,7 +234,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/Spinner03"
+                android:id="@+id/zeitraumSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/zeitraum_items"
@@ -235,12 +254,12 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/EditText01"
+                android:id="@+id/bruttoEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberDecimal"
-                android:text="@string/kv_bei_default_value" />
+                android:text="" />
         </TableRow>
 
         <TableRow
@@ -252,6 +271,7 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onClickBerechnenButton"
                 android:text="@string/button_berechnen_title" />
 
         </TableRow>

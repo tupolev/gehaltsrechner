@@ -29,6 +29,7 @@ import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
@@ -64,192 +65,88 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		request_params = new ArrayList<BasicNameValuePair>(2);
-		response_map = new HashMap<String,String>();
+		//response_map = new HashMap<String,String>();
 		res = getResources();
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		setContentView(R.layout.activity_main);
 	}
 	
 	public void onClickBerechnenButton(View view) {
-		try {
-			collectRequestParams();
-			getResultsFromService(request_params);
+		
+			
+					
 			Intent i = new Intent(this, ResultActivity.class);	        
-	        i.putExtra("brutto", response_map.get("brutto"));
-	        i.putExtra("lohnsteuer", response_map.get("lohnsteuer"));
-	        i.putExtra("soliz", response_map.get("soliz"));
-	        i.putExtra("kirchenst", response_map.get("kirchenst"));
-	        i.putExtra("kv", response_map.get("kv"));
-	        i.putExtra("pv", response_map.get("pv"));
-	        i.putExtra("rv", response_map.get("rv"));
-	        i.putExtra("av", response_map.get("av"));
-	        i.putExtra("netto", response_map.get("netto"));
-	        
+	        collectRequestParams(i);
+//			i.putExtra("brutto", response_map.get("brutto"));
+//	        i.putExtra("lohnsteuer", response_map.get("lohnsteuer"));
+//	        i.putExtra("soliz", response_map.get("soliz"));
+//	        i.putExtra("kirchenst", response_map.get("kirchenst"));
+//	        i.putExtra("kv", response_map.get("kv"));
+//	        i.putExtra("pv", response_map.get("pv"));
+//	        i.putExtra("rv", response_map.get("rv"));
+//	        i.putExtra("av", response_map.get("av"));
+//	        i.putExtra("netto", response_map.get("netto"));
+	        //i.putExtra("", );
 	        startActivity(i);
+			
 	        
-		} catch (Exception e) {
-			showToast(e.getMessage());
-		}
-	}
-
-	public void showToast(String message) {
-		Context context = getApplicationContext();
-		CharSequence text = message;
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
+		
 	}
 	
-	public String getNodeContent(String nodeName, Document doc) {
-		String nodeValue = "";		
-		try {
-			NodeList nl = doc.getElementsByTagName(nodeName);
-	        for(int i = 0; i < nl.getLength(); i++) {
-	            if (nl.item(i).getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
-	                 org.w3c.dom.Element nameElement = (org.w3c.dom.Element) nl.item(i);
-	                 nodeValue = nameElement.getFirstChild().getNodeValue().trim();
-	             }
-	        }
-		} catch (Exception e) {
-			nodeValue = "";
-		}		
-		return nodeValue;
-	}
-	
-	public void getResultsFromService(ArrayList<BasicNameValuePair> post) throws Exception {
-		try {
-			HttpResponse response = postData();
-	        HttpEntity r_entity = response.getEntity();
-			String xmlString = EntityUtils.toString(r_entity);
-        	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = null;    		
-			db = factory.newDocumentBuilder();
-			InputSource inStream = new InputSource();
-	        inStream.setCharacterStream(new StringReader(xmlString));
-	        Document doc = null;
-	        doc = db.parse(inStream);
-	        response_map.put("lohnsteuer", getNodeContent("lohnsteuer", doc));
-	        response_map.put("soliz", getNodeContent("soliz", doc));
-	        response_map.put("kirchensteuer", getNodeContent("kirchensteuer", doc));
-	        response_map.put("kv", getNodeContent("kv", doc));
-	        response_map.put("pv", getNodeContent("pv", doc));
-	        response_map.put("rv", getNodeContent("rv", doc));
-	        response_map.put("av", getNodeContent("av", doc));
-	        response_map.put("total_st", getNodeContent("total_st", doc));
-	        response_map.put("total_sv", getNodeContent("total_sv", doc));
-	        response_map.put("netto", getNodeContent("netto", doc));
-		} catch (Exception e) {
-			throw e;
-		}
-	}
-	
-	private void collectRequestParams() {
+	private void collectRequestParams(Intent i) {
 		Spinner lv = (Spinner)findViewById(R.id.birthDateSpinner);
 		String[] item_values = res.getStringArray(R.array.birth_date_values);
-		request_params.add(new BasicNameValuePair("ajahr", item_values[lv.getSelectedItemPosition()]));
-		
+		//request_params.add(new BasicNameValuePair("ajahr", item_values[lv.getSelectedItemPosition()]));
+		i.putExtra("ajahr", item_values[lv.getSelectedItemPosition()]);
 		
 		item_values = res.getStringArray(R.array.lstklasse_values);
 		lv = (Spinner)findViewById(R.id.lstKlasseSpinner);
-		request_params.add(new BasicNameValuePair("stkl", item_values[lv.getSelectedItemPosition()]));
+		//request_params.add(new BasicNameValuePair("stkl", item_values[lv.getSelectedItemPosition()]));
+		i.putExtra("stkl", item_values[lv.getSelectedItemPosition()]);
 		
 		item_values = res.getStringArray(R.array.kinderfrei_values);
 		lv = (Spinner)findViewById(R.id.kinderfreiSpinner);
-		request_params.add(new BasicNameValuePair("zkf", item_values[lv.getSelectedItemPosition()]));
+		//request_params.add(new BasicNameValuePair("zkf", item_values[lv.getSelectedItemPosition()]));
+		i.putExtra("zkf", item_values[lv.getSelectedItemPosition()]);
 		
 		item_values = res.getStringArray(R.array.bundesland_values);
 		lv = (Spinner)findViewById(R.id.bundeslandSpinner);
-		request_params.add(new BasicNameValuePair("bundesland", item_values[lv.getSelectedItemPosition()]));
+		//request_params.add(new BasicNameValuePair("bundesland", item_values[lv.getSelectedItemPosition()]));
+		i.putExtra("bundesland", item_values[lv.getSelectedItemPosition()]);
 		
 		item_values = res.getStringArray(R.array.kirchensteuer_values);
 		lv = (Spinner)findViewById(R.id.kirchensteuerSpinner);
-		request_params.add(new BasicNameValuePair("r", item_values[lv.getSelectedItemPosition()]));
-
+		//request_params.add(new BasicNameValuePair("r", item_values[lv.getSelectedItemPosition()]));
+		i.putExtra("r", item_values[lv.getSelectedItemPosition()]);
+		
 		RadioGroup rg = (RadioGroup)findViewById(R.id.rvPflichtigRadioGroup); 
 		int selectedId = rg.getCheckedRadioButtonId();
 		RadioButton rb = (RadioButton)findViewById(selectedId);
-		request_params.add(new BasicNameValuePair("e_krv", rb.getTag().toString()));
+		//request_params.add(new BasicNameValuePair("e_krv", rb.getTag().toString()));
+		i.putExtra("e_krv", rb.getTag().toString());
 		
 		rg = (RadioGroup)findViewById(R.id.under23RadioGroup); 
 		selectedId = rg.getCheckedRadioButtonId();
 		rb = (RadioButton)findViewById(selectedId);
-		request_params.add(new BasicNameValuePair("kinderlos", rb.getTag().toString()));
+		//request_params.add(new BasicNameValuePair("kinderlos", rb.getTag().toString()));
+		i.putExtra("kinderlos", rb.getTag().toString());
 		
 		EditText et = (EditText)findViewById(R.id.kvBeiEditText);
-		request_params.add(new BasicNameValuePair("kvsatz", et.getText().toString()));
+		//request_params.add(new BasicNameValuePair("kvsatz", et.getText().toString()));
+		i.putExtra("kvsatz", et.getText().toString());
 		
 		item_values = res.getStringArray(R.array.zeitraum_values);
 		lv = (Spinner)findViewById(R.id.zeitraumSpinner);
-		request_params.add(new BasicNameValuePair("lzz", item_values[lv.getSelectedItemPosition()]));
+		//request_params.add(new BasicNameValuePair("lzz", item_values[lv.getSelectedItemPosition()]));
+		i.putExtra("lzz", item_values[lv.getSelectedItemPosition()]);
 		
 		et = (EditText)findViewById(R.id.bruttoEditText);
-		request_params.add(new BasicNameValuePair("re4", et.getText().toString()));
-		
-		
-		
-		/*
-		    $_POST['aganzeige']	   =  isset($_POST['aganzeige'])	    ?:  "0" ;
-    $_POST['ajahr']        =  isset($_POST['ajahr']     )       ?:  "0" ;
-    $_POST['bundesland']   =  isset($_POST['bundesland'])       ?:  "6" ;
-    $_POST['e_bg']         =  isset($_POST['e_bg']      )       ?:  "0,8 " ;
-    $_POST['e_krv']        =  isset($_POST['e_krv']     )       ?:  "0" ;
-    $_POST['e_kvp']        =  isset($_POST['e_kvp']     )       ?:  " " ;
-    $_POST['e_pkpv']       =  isset($_POST['e_pkpv']    )       ?:  " " ;
-    $_POST['e_pkv']        =  isset($_POST['e_pkv']     )       ?:  "1" ;
-    $_POST['e_u1']         =  isset($_POST['e_u1']      )       ?:  "1,1" ;
-    $_POST['e_u2']         =  isset($_POST['e_u2']      )       ?:  "0,1" ;
-    $_POST['entsch_1']	   =   isset($_POST['entsch_1'])	    ?:  " " ;
-    $_POST['entsch_2']	   =  isset($_POST['entsch_2'])	        ?:  " " ;
-    $_POST['f']           =  isset($_POST['f']         )        ?:  " " ;
-    $_POST['jfreib']      =  isset($_POST['jfreib']    )        ?:  " " ;
-    $_POST['jhinzu']      =  isset($_POST['jhinzu']    )        ?:  " " ;
-    $_POST['jre4ent']     =  isset($_POST['jre4ent']   )        ?:  " " ;
-    $_POST['jsonstb']     =  isset($_POST['jsonstb']   )        ?:  " " ;
-    $_POST['kapindex']	   =  isset($_POST['kapindex'])	        ?:  "0" ;
-    $_POST['kinderlos']=	    isset($_POST['kinderlos'])	    ?:  "1" ;
-    $_POST['kvsatz']   =  isset($_POST['kvsatz']    )           ?:  "15.5" ;
-    $_POST['lzz']      =  isset($_POST['lzz']       )           ?:  "2" ;
-    $_POST['r']        =  isset($_POST['r']         )           ?:  "0" ;
-    $_POST['re4']      =  isset($_POST['re4']       )           ?:  "2500" ;
-    $_POST['sonstb']   =  isset($_POST['sonstb']    )           ?: " " ;
-    $_POST['sonstent']=	  isset($_POST['sonstent'])	            ?: " " ;
-    $_POST['sterbe']  =  isset($_POST['sterbe']    )            ? : " " ;
-    $_POST['stkl']    =  isset($_POST['stkl']      )            ? : "1" ;
-    $_POST['vbez']    =  isset($_POST['vbez']      )            ? : " " ;
-    $_POST['vbezm']   =  isset($_POST['vbezm']     )            ? : " " ;
-    $_POST['vbezs']   =  isset($_POST['vbezs']     )            ? : " " ;
-    $_POST['vjahr']   =  isset($_POST['vjahr']     )            ? : "2013" ;
-    $_POST['vkapa']   =  isset($_POST['vkapa']     )            ? : " " ;
-    $_POST['vmt']     =  isset($_POST['vmt']       )            ? : " " ;
-    $_POST['zkf']     =  isset($_POST['zkf']       )            ? : "0" ;
-    $_POST['zmvb']    =  isset($_POST['zmvb']      )            ? : "12" ;
-		*/
+		//request_params.add(new BasicNameValuePair("re4", et.getText().toString()));
+		i.putExtra("re4", et.getText().toString());
+	
 	}
 	
-	private HttpResponse postData() throws Exception {
-	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost(getString(R.string.url_lohn_service));
-	    HttpResponse response;
-	    //try {
-	    	httppost.setEntity(new UrlEncodedFormEntity(this.request_params));
-	    	response = httpclient.execute(httppost);
-	    //} catch (Exception e) {
-	    //    response = null;	        
-	    //    throw new Exception(getString(R.string.err_connecting_server));
-	    //}
-	    return response;
-	} 
+	
 	
 	
 	@Override

@@ -6,255 +6,334 @@
     tools:context=".ResultActivity"
     tools:ignore="MergeRootFrame" >
 
-       <TableLayout
-           android:layout_width="320dp"
-           android:layout_height="match_parent" >
+    <ScrollView
+        android:id="@+id/scrollviewer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
 
-           <TableRow
-               android:id="@+id/tableRow1"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+        <TableLayout
+            android:layout_width="320dp"
+            android:layout_height="match_parent" >
 
-               <TextView
-                   android:id="@+id/textView1"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_screen"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-           </TableRow>
-           <TableRow
-               android:id="@+id/TableRow07"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_screen"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-               <Space
-                   android:layout_width="fill_parent"
-                   android:layout_height="fill_parent" />
+            <TableRow
+                android:id="@+id/TableRow07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-           </TableRow>
+                <Space
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/tableRow2"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/textView2"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_brutto_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_brutto_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-               <TextView
-                   android:id="@+id/bruttoTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-           </TableRow>
+                <TextView
+                    android:id="@+id/bruttoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/glob_empty_container"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/tableRow3"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/textView3"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_lst_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/lstTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_lst_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/tableRow4"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/textView4"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_soliz_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/solizTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/lstTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/tableRow5"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/textView5"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_kirchenst_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/kirchenstTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_soliz_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/TableRow01"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/TextView01"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_kv_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/kvTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/solizTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/TableRow02"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/TextView02"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_pv_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/pvTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_kirchenst_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/TableRow03"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/TextView03"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_rv_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/rvTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/kirchenstTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/TableRow04"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/TableRow01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/TextView04"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_av_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/avTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/TextView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_kv_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/TableRow05"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/TextView05"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_sum_steuer_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/sumSteuerTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/kvTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <TableRow
-               android:id="@+id/TableRow06"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+            <TableRow
+                android:id="@+id/TableRow02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-               <TextView
-                   android:id="@+id/TextView06"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_sum_sv_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/sumSvTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-           </TableRow>
+                <TextView
+                    android:id="@+id/TextView02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_pv_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-           <TableRow
-               android:id="@+id/TableRow08"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/pvTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-               <TextView
-                   android:id="@+id/TextView07"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/result_netto_title"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
-               <TextView
-                   android:id="@+id/nettoTextView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="@string/glob_empty_container"
-                   android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TableRow
+                android:id="@+id/TableRow03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-           </TableRow>
+                <TextView
+                    android:id="@+id/TextView03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_rv_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-           <Button
-               android:id="@+id/button1"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:onClick="backButtonClick"
-               android:text="@string/result_back_button_title" />
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-       </TableLayout>
+                <TextView
+                    android:id="@+id/rvTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-   </FrameLayout>
+            <TableRow
+                android:id="@+id/TableRow04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/TextView04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_av_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/avTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/TableRow05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/TextView05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_sum_steuer_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/sumSteuerTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/TableRow06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/TextView06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_sum_sv_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/sumSvTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/TableRow08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/TextView07"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result_netto_title"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/nettoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/glob_empty_container"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="backButtonClick"
+                android:text="@string/result_back_button_title" />
+        </TableLayout>
+    </ScrollView>
+
+</FrameLayout>

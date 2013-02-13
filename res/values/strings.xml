@@ -173,7 +173,7 @@
 		<string name="glob_empty_container">[]</string>
 		<string name="result_screen">Ergebnis Lohnsteuerberechnung 2013</string>
 		<string name="result_screen_title">Gehaltsrechner > Ergebnis</string>
-		<string name="url_lohn_service">http://sugar/lohn/lohn.xml.php</string>
+		<string name="url_lohn_service">http://kodesoft.net/gehaltsrechner/service/lohn.xml.php</string>
 		<string name="err_parsing_xml">Error parsing XML response from server</string>
 		<string name="err_connecting_server">Error connecting to the server</string>
 		<string name="result_back_button_title">Zurück</string>

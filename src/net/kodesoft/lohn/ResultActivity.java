@@ -20,27 +20,12 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.app.ActionBar;
-import android.app.AlertDialog;
-import android.app.FragmentTransaction;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.*;
-import android.content.res.Resources;
 
 public class ResultActivity extends Activity {
 
@@ -69,15 +54,35 @@ public class ResultActivity extends Activity {
 		    public void run() {
 		    	try {
 					getResultsFromService(request_params);
-					((TextView) findViewById(R.id.bruttoTextView)).setText(response_map.get("brutto"));
-	    	        ((TextView) findViewById(R.id.lstTextView)).setText(response_map.get("lohnsteuer"));
-	    	        ((TextView) findViewById(R.id.solizTextView)).setText(response_map.get("soliz"));
-	    	        ((TextView) findViewById(R.id.kirchenstTextView)).setText(response_map.get("kirchenst"));
-	    	        ((TextView) findViewById(R.id.kvTextView)).setText(response_map.get("kv"));
-	    	        ((TextView) findViewById(R.id.pvTextView)).setText(response_map.get("pv"));
-	    	        ((TextView) findViewById(R.id.rvTextView)).setText(response_map.get("rv"));
-	    	        ((TextView) findViewById(R.id.avTextView)).setText(response_map.get("av"));
-	    	        ((TextView) findViewById(R.id.nettoTextView)).setText(response_map.get("netto"));
+					runOnUiThread(new Runnable() {
+					     public void run() {
+					    		String euro = getString(R.string.glob_euro_symbol);
+								//HashMap<String, String> str = new HashMap<String, String>();
+								
+								/*str.put("brutto", response_map.get("brutto") + euro);
+								str.put("lohnsteuer", response_map.get("lohnsteuer") + euro);
+								str.put("soliz", response_map.get("soliz") + euro);
+								str.put("kirchenst", response_map.get("kirchenst") + euro);
+								str.put("kv", response_map.get("kv") + euro);
+								str.put("pv", response_map.get("pv") + euro);
+								str.put("rv", response_map.get("rv") + euro);
+								str.put("av", response_map.get("av") + euro);
+								str.put("netto", response_map.get("netto") + euro);*/
+								
+								((TextView) findViewById(R.id.bruttoTextView)).setText(response_map.get("brutto") + euro);
+				    	        ((TextView) findViewById(R.id.lstTextView)).setText(response_map.get("lohnsteuer") + euro);
+				    	        ((TextView) findViewById(R.id.solizTextView)).setText(response_map.get("soliz") + euro);
+				    	        ((TextView) findViewById(R.id.kirchenstTextView)).setText(response_map.get("kirchensteuer") + euro);
+				    	        ((TextView) findViewById(R.id.kvTextView)).setText(response_map.get("kv") + euro);
+				    	        ((TextView) findViewById(R.id.pvTextView)).setText(response_map.get("pv") + euro);
+				    	        ((TextView) findViewById(R.id.rvTextView)).setText(response_map.get("rv") + euro);
+				    	        ((TextView) findViewById(R.id.avTextView)).setText(response_map.get("av") + euro);
+				    	        ((TextView) findViewById(R.id.sumSteuerTextView)).setText(response_map.get("total_st") + euro);
+				    	        ((TextView) findViewById(R.id.sumSvTextView)).setText(response_map.get("total_sv") + euro);
+				    	        ((TextView) findViewById(R.id.nettoTextView)).setText(response_map.get("netto") + euro);
+
+					    }
+					});
 				} catch (Exception e) {
 					showToast(e.getMessage());
 				}    			
@@ -128,6 +133,8 @@ public class ResultActivity extends Activity {
 	        inStream.setCharacterStream(new StringReader(xmlString));
 	        Document doc = null;
 	        doc = db.parse(inStream);
+	        response_map.put("zeitraum", getNodeContent("zeitraum", doc));	        	        
+	        response_map.put("brutto", getNodeContent("brutto", doc));
 	        response_map.put("lohnsteuer", getNodeContent("lohnsteuer", doc));
 	        response_map.put("soliz", getNodeContent("soliz", doc));
 	        response_map.put("kirchensteuer", getNodeContent("kirchensteuer", doc));

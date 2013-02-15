@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="std_margin">15px</dimen>
+    <dimen name="separator_margin">15px</dimen>
+    <dimen name="bottom_title">15px</dimen>
+</resources>
